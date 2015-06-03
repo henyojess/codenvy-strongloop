@@ -8,15 +8,12 @@ RUN wget -qO- $CLI_BIN_URL | sudo tar zx -C /opt/ && \
 echo "export CLI_HOME=$CLI_HOME" >> $HOME/.bashrc && \
 echo "export PATH=$PATH" >> $HOME/.bashrc && \
 sudo chown user:user -R $CLI_HOME && \
-codenvy login $CODENVY_USER $CODENVY_PASS && \
-CODENVY_PROJECT_ID=$(codenvy list | grep $CODENVY_PROJECT | awk '{ print $1}') && \
-echo "codenvy clone-local $CODENVY_PROJECT_ID" >> $HOME/.bashrc && \
 sudo apt-get update && \
-sudo apt-get install -y git nodejs npm && \ 
+sudo apt-get install -y git=1:2.1.4-2.1 nodejs=0.10.29~dfsg-2 npm=1.4.21+ds-2 && \
 sudo apt-get clean && \
 sudo rm -rf /var/lib/apt/lists/* && \
 sudo ln -sf /usr/bin/nodejs /usr/bin/node && \
-sudo npm install -g strongloop
+sudo npm install -g strongloop@4.0.3
 EXPOSE 3000
 ENV CODENVY_APP_PORT_3000_HTTP 3000
 ENV CODENVY_APP_BIND_DIR /home/user/runtime
