@@ -12,3 +12,9 @@ sudo apt-get clean && \
 sudo rm -rf /var/lib/apt/lists/* && \
 sudo ln -sf /usr/bin/nodejs /usr/bin/node && \
 sudo npm install -g strongloop@4.0.3
+
+EXPOSE 3000
+ENV CODENVY_APP_PORT_3000_HTTP 3000
+ENV CODENVY_APP_BIND_DIR /home/user/runtime
+VOLUME ["/home/user/runtime"]
+CMD sleep 4h
